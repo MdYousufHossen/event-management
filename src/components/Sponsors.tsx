@@ -6,7 +6,7 @@ import Arrow from "/public/assets/icons/upDownArrow.svg";
 const Sponsors = ({sponsorsInfo}:{sponsorsInfo:ConferenceTypes["sponsors"]}) => {
   
     return (
-      <div className="flex mt-5"  draggable="true">
+      <div className="flex">
   { sponsorsInfo&&<details className=" lg:contents w-full "> 
                 <summary  className="cursor-pointer flex items-center  border rounded lg:w-[20%] h-[70px] ">
                     <div  className="bg-white m-2 p-2 rounded" >

@@ -1,8 +1,5 @@
-
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 import { FadeLoader } from 'react-spinners';
 import GET_CONFERENCE, { ConferenceDataType } from "../../graphql/servicers/conference";
 import Error from "../../src/components/Error";
@@ -31,9 +28,8 @@ const Event = () => {
       <Navigation/>
       <div className="w-[70%] mx-auto mt-12">
       <TitleSection/>
-      <DndProvider backend={HTML5Backend}>
       {data&& <EventContainer data={data}/>}
-      </DndProvider>
+      
       </div>
      
       </>

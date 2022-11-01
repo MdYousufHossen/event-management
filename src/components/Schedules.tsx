@@ -8,7 +8,7 @@ const Schedules = ({schedulesInfo}:{schedulesInfo:ConferenceTypes["schedules"]})
     console.log(schedulesInfo[1])
 
     return (
-      <div className="flex mt-5 "  draggable="true">
+      <div className="flex "  >
   { schedulesInfo&&<details className=" lg:contents w-full "> 
                 <summary  className="cursor-pointer flex items-center  border rounded lg:w-[20%] h-[70px] ">
                     <div  className="bg-white m-2 p-2 rounded" >

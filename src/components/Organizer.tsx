@@ -1,24 +1,16 @@
 import Image from "next/image";
-import { useDrag } from 'react-dnd';
 import { ConferenceTypes } from "../../graphql/servicers/conference";
 import Arrow from "/public/assets/icons/upDownArrow.svg";
 
 const Organizer = ({organizerInfo}:{organizerInfo:ConferenceTypes["organizer"]}) => {
     const {name,about,company ,image}= organizerInfo;
     
-    const [{ isDragging }, drag] = useDrag({
-      type: "project",
-  item: "hello project",
-  collect: monitor => ({
-    isDragging: !!monitor.isDragging(),
-  }),
-});
-
+  
     const myLoader=()=>{
       return `${image?.url}`;
     }
     return (
-      <div className="flex"  draggable="true"  ref={drag}>
+      <div className="flex"   >
   {   organizerInfo&&<details open className=" lg:contents w-full"> 
                 <summary  className="cursor-pointer flex items-center  border rounded lg:w-[20%] h-[70px]">
                     <div  className="bg-white m-2 p-2 rounded" >

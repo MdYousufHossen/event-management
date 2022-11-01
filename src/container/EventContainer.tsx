@@ -1,5 +1,4 @@
 import React from 'react';
-import { useDrop } from 'react-dnd';
 import { ConferenceDataType } from '../../graphql/servicers/conference';
 import Location from "../../src/components/Location";
 import Organizer from "../../src/components/Organizer";
@@ -16,26 +15,46 @@ const EventContainer = ({data}:{data:ConferenceDataType}) => {
         <Schedules schedulesInfo={data.conference.schedules} key="fourth"/>,
         <Sponsors sponsorsInfo={data.conference.sponsors}  key="fivth"/>
     ]
-    const [{isOver},drop]=useDrop({
-        accept:"project",
-        drop:(item)=>{
-            console.log(item,"item")
-        },
-        collect: (monitor) =>  { 
-            return {
-            isOver: !!monitor.isOver()
-            
-          }}
-       })
+    const [eventsItems, setEventsItems] = React.useState(events)
+
+    const dragItem = React.useRef<any>(null)
+	  const dragOverItem = React.useRef<any>(null)
+
+	//const handle drag sorting
+	const handleSort = () => {
+		//duplicate items
+		let _eventsItems = [...eventsItems]
+
+		//remove and save the dragged item content
+		const draggedItemContent = _eventsItems.splice(dragItem.current, 1)[0]
+
+		//switch the position
+		_eventsItems.splice(dragOverItem.current, 0, draggedItemContent)
+
+		//reset the position ref
+		dragItem.current = null
+		dragOverItem.current = null
+
+		//update the actual array
+		setEventsItems(_eventsItems)
+	}
+
+	
 
       
     return (
         <div>
-            <div className=" mt-12 "  ref={drop}>
-                {events.map((EventComp)=>{
-                  return <React.Fragment key={EventComp.key}>
+            <div className=" my-12 ">
+                {eventsItems.map((EventComp,index)=>{
+                  return <div
+                   key={EventComp.key}
+                   className="mt-5"
+                   draggable
+                   onDragStart={(e)=>{dragItem.current=index}}
+                   onDragEnter={(e)=>(dragOverItem.current=index)}
+                   onDragEnd={handleSort}>
                     {EventComp}
-                  </React.Fragment>
+                  </div>
                 })}
               </div>
         </div>

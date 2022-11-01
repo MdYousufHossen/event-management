@@ -10,7 +10,7 @@ const Speakers = ({speakersInfo}:{speakersInfo:ConferenceTypes["speakers"]}) => 
       return `${image?.url}`;
     }
     return (
-      <div className="flex mt-5"  draggable="true">
+      <div className="flex ">
   { speakersInfo&&<details className=" lg:contents w-full "> 
                 <summary  className="cursor-pointer flex items-center  border rounded lg:w-[20%] h-[70px] ">
                     <div  className="bg-white m-2 p-2 rounded" >
