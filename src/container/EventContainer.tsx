@@ -52,7 +52,8 @@ const EventContainer = ({data}:{data:ConferenceDataType}) => {
                    draggable
                    onDragStart={(e)=>{dragItem.current=index}}
                    onDragEnter={(e)=>(dragOverItem.current=index)}
-                   onDragEnd={handleSort}>
+                   onDragEnd={handleSort}
+                   onDragOver={(e)=>e.preventDefault()}>
                     {EventComp}
                   </div>
                 })}
