@@ -29,9 +29,7 @@ const Event = () => {
       <div className="w-[70%] mx-auto mt-12">
       <TitleSection/>
       {data&& <EventContainer data={data}/>}
-      
       </div>
-     
       </>
     }
       

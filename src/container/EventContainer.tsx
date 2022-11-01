@@ -38,10 +38,6 @@ const EventContainer = ({data}:{data:ConferenceDataType}) => {
 		//update the actual array
 		setEventsItems(_eventsItems)
 	}
-
-	
-
-      
     return (
         <div>
             <div className=" my-12 ">

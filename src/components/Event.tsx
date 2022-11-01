@@ -3,11 +3,12 @@ import { useRouter } from "next/router";
 import { FadeLoader } from "react-spinners";
 import GET_CONFERENCES, { ConferencesTypes } from "../../graphql/servicers/conferences";
 import Error from "./Error";
+import TitleSection from "./TitleSection";
 
 const Event = () => {
     const router=useRouter()
     const { loading, error, data } = useQuery<ConferencesTypes>(GET_CONFERENCES);
-  
+    const week=["Tue","Wed","Thu","Fri","Sat","Sun"]
     let content=null
     if(loading){
         content=<FadeLoader cssOverride={{margin:"auto"}} color="#36d7b7" />
@@ -18,8 +19,9 @@ const Event = () => {
         content=<Error message="Conference is not found!" />
     }else if(!loading&&!error&& data?.conferences){
       content=  <div className="w-9/12 mx-auto mt-12" >
-      <h2 className="font-bold text-primary">Event Schedule</h2>
-      <p className="text-gray-500">Lorem uis diam turpis quam id fermentum.In quis diam turpis quam id fermentum. </p>
+
+
+    <TitleSection/>
 
       {/* table calender  */}
 <div className="snap-mandatory snap-x w-full overflow-auto my-12">
@@ -27,12 +29,9 @@ const Event = () => {
       <thead className="">
           <tr className="border-collapse border border-slate-400 h-[50px]">
           <th className="border-collapse border border-slate-400 "> </th>
-          <th className="text-primary font-bold">Tue</th>
-          <th className="text-primary font-bold">Wed</th>
-          <th className="text-primary font-bold">Thu</th>
-          <th className="text-primary font-bold">Fri</th>
-          <th className="text-primary font-bold">Sat</th>
-          <th className="text-primary font-bold">Sun</th>
+          {week.map((day,index)=>{
+            return <th key={index} className="text-primary font-bold">{day}</th>
+          })}
           </tr>
       </thead>
       <tbody>
